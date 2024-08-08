@@ -4,3 +4,29 @@
 
 (process:12578): Gtk-ERROR **: 09:55:20.079: Can't create a GtkStyleContext without a display connection
 Trace/breakpoint trap (core dumped)
+======
+
+In function ‘handle_move’:
+caro-server-final.c:47:13: warning: implicit declaration of function ‘is_valid_move’ [-Wimplicit-function-declaration]
+   47 |         if (is_valid_move(game_state->board, row, col)) {
+      |             ^~~~~~~~~~~~~
+caro-server-final.c:48:13: warning: implicit declaration of function ‘place_piece’ [-Wimplicit-function-declaration]
+   48 |             place_piece(game_state->board, row, col, 1);
+      |             ^~~~~~~~~~~
+caro-server-final.c:49:17: warning: implicit declaration of function ‘check_winner’ [-Wimplicit-function-declaration]
+   49 |             if (check_winner(game_state->board, row, col, 1)) {
+      |                 ^~~~~~~~~~~~
+caro-server-final.c: In function ‘main’:
+caro-server-final.c:123:13: warning: implicit declaration of function ‘initialize_board’ [-Wimplicit-function-declaration]
+  123 |             initialize_board(game_state.board);
+      |             ^~~~~~~~~~~~~~~~
+/usr/bin/ld: /tmp/ccG3Gb6o.o: in function `handle_move':
+caro-server-final.c:(.text+0x204): undefined reference to `is_valid_move'
+/usr/bin/ld: caro-server-final.c:(.text+0x228): undefined reference to `place_piece'
+/usr/bin/ld: caro-server-final.c:(.text+0x244): undefined reference to `check_winner'
+/usr/bin/ld: caro-server-final.c:(.text+0x322): undefined reference to `is_valid_move'
+/usr/bin/ld: caro-server-final.c:(.text+0x346): undefined reference to `place_piece'
+/usr/bin/ld: caro-server-final.c:(.text+0x362): undefined reference to `check_winner'
+/usr/bin/ld: /tmp/ccG3Gb6o.o: in function `main':
+caro-server-final.c:(.text+0x5db): undefined reference to `initialize_board'
+collect2: error: ld returned 1 exit status
