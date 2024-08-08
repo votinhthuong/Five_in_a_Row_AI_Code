@@ -30,3 +30,142 @@ caro-server-final.c:(.text+0x204): undefined reference to `is_valid_move'
 /usr/bin/ld: /tmp/ccG3Gb6o.o: in function `main':
 caro-server-final.c:(.text+0x5db): undefined reference to `initialize_board'
 collect2: error: ld returned 1 exit status
+=====================
+
+In function ‘handle_move’:
+caro-server-final.c:47:13: warning: implicit declaration of function ‘is_valid_move’ [-Wimplicit-function-declaration]
+   47 |         if (is_valid_move(game_state->board, row, col)) {
+      |             ^~~~~~~~~~~~~
+caro-server-final.c:48:13: warning: implicit declaration of function ‘place_piece’ [-Wimplicit-function-declaration]
+   48 |             place_piece(game_state->board, row, col, 1);
+      |             ^~~~~~~~~~~
+caro-server-final.c:49:17: warning: implicit declaration of function ‘check_winner’ [-Wimplicit-function-declaration]
+   49 |             if (check_winner(game_state->board, row, col, 1)) {
+      |                 ^~~~~~~~~~~~
+caro-server-final.c: In function ‘main’:
+caro-server-final.c:123:13: warning: implicit declaration of function ‘initialize_board’ [-Wimplicit-function-declaration]
+  123 |             initialize_board(game_state.board);
+      |             ^~~~~~~~~~~~~~~~
+/usr/bin/ld: /tmp/ccG3Gb6o.o: in function `handle_move':
+caro-server-final.c:(.text+0x204): undefined reference to `is_valid_move'
+/usr/bin/ld: caro-server-final.c:(.text+0x228): undefined reference to `place_piece'
+/usr/bin/ld: caro-server-final.c:(.text+0x244): undefined reference to `check_winner'
+/usr/bin/ld: caro-server-final.c:(.text+0x322): undefined reference to `is_valid_move'
+/usr/bin/ld: caro-server-final.c:(.text+0x346): undefined reference to `place_piece'
+/usr/bin/ld: caro-server-final.c:(.text+0x362): undefined reference to `check_winner'
+/usr/bin/ld: /tmp/ccG3Gb6o.o: in function `main':
+caro-server-final.c:(.text+0x5db): undefined reference to `initialize_board'
+collect2: error: ld returned 1 exit status
+r3s0lv3@unix-c:~/Documents$ gcc -o caro-client-final caro-client-final.c `pkg-config --cflags --libs gtk+-3.0` -pthread
+caro-client-final.c: In function ‘on_button_press’:
+caro-client-final.c:19:5: error: unknown type name ‘GameState’
+   19 |     GameState *game_state = (GameState *)data;
+      |     ^~~~~~~~~
+caro-client-final.c:19:30: error: ‘GameState’ undeclared (first use in this function); did you mean ‘game_state’?
+   19 |     GameState *game_state = (GameState *)data;
+      |                              ^~~~~~~~~
+      |                              game_state
+caro-client-final.c:19:30: note: each undeclared identifier is reported only once for each function it appears in
+caro-client-final.c:19:41: error: expected expression before ‘)’ token
+   19 |     GameState *game_state = (GameState *)data;
+      |                                         ^
+caro-client-final.c:31:23: error: request for member ‘board’ in something not a structure or union
+   31 |         if (game_state->board[row][col] == 0 && game_state->player_num == game_state->current_player) {
+      |                       ^~
+caro-client-final.c:31:59: error: request for member ‘player_num’ in something not a structure or union
+   31 |         if (game_state->board[row][col] == 0 && game_state->player_num == game_state->current_player) {
+      |                                                           ^~
+caro-client-final.c:31:85: error: request for member ‘current_player’ in something not a structure or union
+   31 |         if (game_state->board[row][col] == 0 && game_state->player_num == game_state->current_player) {
+      |                                                                                     ^~
+caro-client-final.c:34:28: error: request for member ‘socket’ in something not a structure or union
+   34 |             send(game_state->socket, buffer, strlen(buffer), 0);
+      |                            ^~
+caro-client-final.c: At top level:
+caro-client-final.c:41:24: error: unknown type name ‘GameState’
+   41 | void update_game_state(GameState *game_state, char *buffer) {
+      |                        ^~~~~~~~~
+caro-client-final.c: In function ‘receive_messages’:
+caro-client-final.c:60:5: error: unknown type name ‘GameState’
+   60 |     GameState *game_state = (GameState *)arg;
+      |     ^~~~~~~~~
+caro-client-final.c:60:30: error: ‘GameState’ undeclared (first use in this function); did you mean ‘game_state’?
+   60 |     GameState *game_state = (GameState *)arg;
+      |                              ^~~~~~~~~
+      |                              game_state
+caro-client-final.c:60:41: error: expected expression before ‘)’ token
+   60 |     GameState *game_state = (GameState *)arg;
+      |                                         ^
+caro-client-final.c:65:45: error: request for member ‘socket’ in something not a structure or union
+   65 |         int bytes_received = recv(game_state->socket, buffer, sizeof(buffer), 0);
+      |                                             ^~
+caro-client-final.c:79:13: warning: implicit declaration of function ‘update_game_state’ [-Wimplicit-function-declaration]
+   79 |             update_game_state(game_state, buffer);
+      |             ^~~~~~~~~~~~~~~~~
+caro-client-final.c: In function ‘main’:
+caro-client-final.c:88:5: error: unknown type name ‘GameState’
+   88 |     GameState game_state;
+      |     ^~~~~~~~~
+caro-client-final.c:89:5: warning: implicit declaration of function ‘initialize_board’ [-Wimplicit-function-declaration]
+   89 |     initialize_board(game_state.board);
+      |     ^~~~~~~~~~~~~~~~
+caro-client-final.c:89:32: error: request for member ‘board’ in something not a structure or union
+   89 |     initialize_board(game_state.board);
+      |                                ^
+caro-client-final.c:100:15: error: request for member ‘drawing_area’ in something not a structure or union
+  100 |     game_state.drawing_area = gtk_drawing_area_new();
+      |               ^
+caro-client-final.c:101:43: error: request for member ‘drawing_area’ in something not a structure or union
+  101 |     gtk_widget_set_size_request(game_state.drawing_area, 400, 400);
+      |                                           ^
+caro-client-final.c:102:37: error: request for member ‘drawing_area’ in something not a structure or union
+  102 |     gtk_widget_add_events(game_state.drawing_area, GDK_BUTTON_PRESS_MASK);
+      |                                     ^
+In file included from /usr/include/glib-2.0/gobject/gobject.h:30,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:31,
+                 from /usr/include/glib-2.0/glib-object.h:24,
+                 from /usr/include/glib-2.0/gio/gioenums.h:30,
+                 from /usr/include/glib-2.0/gio/giotypes.h:30,
+                 from /usr/include/glib-2.0/gio/gio.h:28,
+                 from /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h:28,
+                 from /usr/include/gtk-3.0/gdk/gdk.h:32,
+                 from /usr/include/gtk-3.0/gtk/gtk.h:30,
+                 from caro-client-final.c:1:
+caro-client-final.c:103:32: error: request for member ‘drawing_area’ in something not a structure or union
+  103 |     g_signal_connect(game_state.drawing_area, "draw", G_CALLBACK(on_draw), &game_state);
+      |                                ^
+/usr/include/glib-2.0/gobject/gsignal.h:519:29: note: in definition of macro ‘g_signal_connect’
+  519 |     g_signal_connect_data ((instance), (detailed_signal), (c_handler), (data), NULL, (GConnectFlags) 0)
+      |                             ^~~~~~~~
+caro-client-final.c:103:66: error: ‘on_draw’ undeclared (first use in this function)
+  103 |     g_signal_connect(game_state.drawing_area, "draw", G_CALLBACK(on_draw), &game_state);
+      |                                                                  ^~~~~~~
+/usr/include/glib-2.0/gobject/gsignal.h:519:60: note: in definition of macro ‘g_signal_connect’
+  519 |     g_signal_connect_data ((instance), (detailed_signal), (c_handler), (data), NULL, (GConnectFlags) 0)
+      |                                                            ^~~~~~~~~
+caro-client-final.c:103:55: note: in expansion of macro ‘G_CALLBACK’
+  103 |     g_signal_connect(game_state.drawing_area, "draw", G_CALLBACK(on_draw), &game_state);
+      |                                                       ^~~~~~~~~~
+caro-client-final.c:104:32: error: request for member ‘drawing_area’ in something not a structure or union
+  104 |     g_signal_connect(game_state.drawing_area, "button-press-event", G_CALLBACK(on_button_press), &game_state);
+      |                                ^
+/usr/include/glib-2.0/gobject/gsignal.h:519:29: note: in definition of macro ‘g_signal_connect’
+  519 |     g_signal_connect_data ((instance), (detailed_signal), (c_handler), (data), NULL, (GConnectFlags) 0)
+      |                             ^~~~~~~~
+caro-client-final.c:106:56: error: request for member ‘drawing_area’ in something not a structure or union
+  106 |     gtk_container_add(GTK_CONTAINER(window), game_state.drawing_area);
+      |                                                        ^
+caro-client-final.c:109:15: error: request for member ‘socket’ in something not a structure or union
+  109 |     game_state.socket = socket(AF_INET, SOCK_STREAM, 0);
+      |               ^
+caro-client-final.c:114:23: error: request for member ‘socket’ in something not a structure or union
+  114 |     connect(game_state.socket, (struct sockaddr *)&server_address, sizeof(server_address));
+      |                       ^
+caro-client-final.c:118:20: error: request for member ‘socket’ in something not a structure or union
+  118 |     recv(game_state.socket, buffer, sizeof(buffer), 0);
+      |                    ^
+caro-client-final.c:119:15: error: request for member ‘player_num’ in something not a structure or union
+  119 |     game_state.player_num = atoi(buffer);
+      |               ^
+caro-client-final.c:129:21: error: request for member ‘socket’ in something not a structure or union
+  129 |     close(game_state.socket);
