@@ -1,0 +1,6 @@
+(process:12578): Gtk-CRITICAL **: 09:55:20.078: _gtk_css_lookup_resolve: assertion '(((__extension__ ({ GTypeInstance *__inst = (GTypeInstance*) ((provider)); GType __t = ((_gtk_style_provider_private_get_type ())); gboolean __r; if (!__inst) __r = (0); else if (__inst->g_class && __inst->g_class->g_type == __t) __r = (!(0)); else __r = g_type_check_instance_is_a (__inst, __t); __r; }))))' failed
+
+(process:12578): GLib-GObject-CRITICAL **: 09:55:20.079: g_object_set_data_full: assertion 'G_IS_OBJECT (object)' failed
+
+(process:12578): Gtk-ERROR **: 09:55:20.079: Can't create a GtkStyleContext without a display connection
+Trace/breakpoint trap (core dumped)
